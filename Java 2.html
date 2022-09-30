@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+    </head>
+    <body>
+        <div id="message">
+        </div>
+        <form>
+            <hr/>
+            <label>1.ABC：</label>
+            <input type="text" name="name"  id="inputABC"  maxlength="100" value="" >
+            <br/>
+            <label>2.ABCXYZ：</label>
+            <input type="text" name="name" id="inputXYZ" maxlength="100" value="" >
+            <br/>
+            <label>3.DEF：</label>
+            <input type="text" name="name" id="inputDEF" maxlength="100" value="" >
+            <br/>
+            <label>4.@：</label>
+            <input type="text" name="name" id="inputAt" maxlength="100" value="" >
+            <br/>
+            <label>5.0-9Int：</label>
+            <input type="text" name="name" id="inputInt" maxlength="100" value="" >
+            <br/>
+            <label>6.LowerCase：</label>
+            <input type="text" name="name" id="inputLowerCase" maxlength="100" value="" >
+            <br/>
+            <input type="button" id="btnSubmit" value="check">
+            <hr/>
+        </form>
+    </body>
+</html>
+
+<script>
+    window.onload = function(){
+        /*各画面オブジェクト*/
+        const btnSubmit = document.getElementById('btnSubmit');
+        const inputABC = document.getElementById('inputABC');
+        const inputXYZ = document.getElementById('inputXYZ');
+        const inputDEF = document.getElementById('inputDEF');
+        const inputAt = document.getElementById('inputAt');
+        const inputInt = document.getElementById('inputInt');
+        const inputLowerCase = document.getElementById('inputLowerCase');
+        const regABC = /^ABC[A-Za-z]*$/;
+        const regXYZ = /^ABC[A-Za-z]*XYZ$/;
+        const regDEF = /(?=DEF)[A-Za-z]*/;
+        const regAt = /^[A-Za-z]{1,}@[A-Za-z]{1,}$/;
+        const regInt = /^[0-9]{3}$/;
+        const regLowerCase = /^[a-z]{1,}$/;
+
+        btnSubmit.addEventListener('click', function(event) {
+            let message = [];
+            /*入力値チェック*/
+            if(inputABC.value ==""){
+                message.push("1.Please Input Value");
+            }else if(!regABC.test(inputABC.value)){
+                message.push("1.Invalid Value");
+            }
+            if(inputXYZ.value ==""){
+                message.push("2.Please Input Value");
+            }else if(!regXYZ.test(inputXYZ.value)){
+                message.push("2.Invalid Value");
+            }
+            if(inputDEF.value ==""){
+                message.push("3.Please Input Value");
+            }else if(!regDEF.test(inputDEF.value)){
+                message.push("3.Invalid Value");
+            }
+            if(inputAt.value ==""){
+                message.push("4.Please Input Value");
+            }else if(!regAt.test(inputAt.value)){
+                message.push("4.Invalid Value");
+            }
+            if(inputInt.value ==""){
+                message.push("5.Please Input Value");
+            }else if(!regInt.test(inputInt.value)){
+                message.push("5.Invalid Value");
+            }
+            if(inputLowerCase.value ==""){
+                message.push("6.Please Input Value");
+            }else if(!regLowerCase.test(inputLowerCase.value)){
+                message.push("6.Invalid Value");
+            }
+            if(message.length > 0){
+                alert(message);
+                return;
+            }
+            alert('OK');
+        });
+    };
+</script>
